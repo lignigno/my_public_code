@@ -6,14 +6,14 @@
 #    By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 05:39:35 by lignigno          #+#    #+#              #
-#    Updated: 2021/01/31 01:08:13 by lignigno         ###   ########.fr        #
+#    Updated: 2021/03/13 10:57:35 by lignigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY : all clean fclean re
 
 SRC := 	cleaner.c \
-		free_imgs.c \
+		free_bckg_imgs.c \
 		free_cam.c \
 		free_light.c \
 		free_plane.c \
@@ -25,10 +25,8 @@ SRC := 	cleaner.c \
 
 OBJ := $(addprefix ../obj/, $(SRC:.c=.o))
 
-FLAGS := -Wall -Wextra -Werror
-
-#$(FLAGS)
 all : $(OBJ)
+	@echo "$(GREEN_COL)mcleaner ready\033[0m"
 
 ../obj/%.o : %.c ../project_header.h
-	gcc -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@

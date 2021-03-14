@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:17:02 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/31 01:10:05 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:34:49 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,10 @@ static void		skip_space(t_vars *vars, char **str)
 		(*str)++;
 }
 
-/*
-** //printf("cam_create : %p\n", new_cam);
-*/
-
 static t_square	*create_square(t_vars *vars)
 {
 	t_square		*new_square;
+	t_square		*iterator;
 
 	new_square = malloc(sizeof(t_square));
 	if (new_square == NULL)
@@ -42,10 +39,11 @@ static t_square	*create_square(t_vars *vars)
 	}
 	else
 	{
-		while (vars->objects.square->next != NULL)
-			vars->objects.square = vars->objects.square->next;
-		vars->objects.square->next = new_square;
-		vars->objects.square->next->next = NULL;
+		iterator = vars->objects.square;
+		while (iterator->next != NULL)
+			iterator = iterator->next;
+		iterator->next = new_square;
+		iterator->next->next = NULL;
 	}
 	new_square->color = 0;
 	vars->need_cleared[SQUARE] = 1;
@@ -64,15 +62,16 @@ void			get_square(t_vars *vars, char *str)
 	square = create_square(vars);
 	str += 2;
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, square->coordinates))
+	if (!get_coordinates(&str, &square->coordinates))
 		errorka(vars, INCORRECT_SQUARE);
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, square->normal_vector))
+	if (!get_coordinates(&str, &square->normal_vector))
 		errorka(vars, INCORRECT_SQUARE);
-	if (1 < square->normal_vector[0] || square->normal_vector[0] < -1 ||
-		1 < square->normal_vector[1] || square->normal_vector[1] < -1 ||
-		1 < square->normal_vector[2] || square->normal_vector[2] < -1)
+	if (len_vector(square->normal_vector) > 1 ||
+		len_vector(square->normal_vector) == 0)
 		errorka(vars, INCORRECT_SQUARE);
+	square->normal_vector = multiplying_vector(square->normal_vector,
+									1.0 / len_vector(square->normal_vector));
 	skip_space(vars, &str);
 	if (!get_dbl_num_in_range(&str, &square->side_size, INT_MIN + 1, INT_MAX))
 		errorka(vars, INCORRECT_SQUARE);

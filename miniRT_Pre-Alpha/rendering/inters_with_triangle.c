@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:39:50 by lignigno          #+#    #+#             */
-/*   Updated: 2021/02/28 22:19:00 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/03/13 14:11:01 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ static int		in_triangle(t_triangle triangle, t_vector inter)
 	s_of_other_tr[0] = square_of_triangle(triangle.a, triangle.b);
 	s_of_other_tr[1] = square_of_triangle(triangle.b, triangle.c);
 	s_of_other_tr[2] = square_of_triangle(triangle.c, triangle.a);
-	if (s_of_other_tr[0] + s_of_other_tr[1] > s_of_main_tr + 0.000000001 ||
-		s_of_other_tr[1] + s_of_other_tr[2] > s_of_main_tr + 0.000000001 ||
-		s_of_other_tr[2] + s_of_other_tr[0] > s_of_main_tr + 0.000000001)
+	if (s_of_other_tr[0] + s_of_other_tr[1] +
+		s_of_other_tr[2] > s_of_main_tr + 0.000000001)
 		return (0);
 	return (1);
 }

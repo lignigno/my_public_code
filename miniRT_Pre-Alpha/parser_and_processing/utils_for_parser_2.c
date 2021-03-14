@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 06:41:03 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/29 14:19:00 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/18 02:28:16 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 ** ________________________________________________________________MAIN FUNCTION
 */
 
-int				get_coordinates(char **str, double *coordinates)
+int				get_coordinates(char **str, t_vector *coordinates)
 {
-	if (!get_dbl_num_in_range(str, &coordinates[0], INT_MIN + 1, INT_MAX))
+	if (!get_dbl_num_in_range(str, &coordinates->x, INT_MIN + 1, INT_MAX))
 		return (0);
 	if (*(*str)++ != ',')
 		return (0);
-	if (!get_dbl_num_in_range(str, &coordinates[1], INT_MIN + 1, INT_MAX))
+	if (!get_dbl_num_in_range(str, &coordinates->y, INT_MIN + 1, INT_MAX))
 		return (0);
 	if (*(*str)++ != ',')
 		return (0);
-	if (!get_dbl_num_in_range(str, &coordinates[2], INT_MIN + 1, INT_MAX))
+	if (!get_dbl_num_in_range(str, &coordinates->z, INT_MIN + 1, INT_MAX))
 		return (0);
 	return (1);
 }

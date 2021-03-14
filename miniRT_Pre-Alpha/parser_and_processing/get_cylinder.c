@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:27:47 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/30 22:42:23 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:34:04 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** __________________________________________________________________SUBFUNCTION
 */
 
-static void		skip_space(t_vars *vars, char **str)
+static void			skip_space(t_vars *vars, char **str)
 {
 	if (**str != ' ')
 		errorka(vars, INCORRECT_CYLINDER);
@@ -24,13 +24,10 @@ static void		skip_space(t_vars *vars, char **str)
 		(*str)++;
 }
 
-/*
-** //printf("cam_create : %p\n", new_cam);
-*/
-
 static t_cylinder	*create_cylinder(t_vars *vars)
 {
 	t_cylinder		*new_cylinder;
+	t_cylinder		*iterator;
 
 	new_cylinder = malloc(sizeof(t_cylinder));
 	if (new_cylinder == NULL)
@@ -42,10 +39,11 @@ static t_cylinder	*create_cylinder(t_vars *vars)
 	}
 	else
 	{
-		while (vars->objects.cylinder->next != NULL)
-			vars->objects.cylinder = vars->objects.cylinder->next;
-		vars->objects.cylinder->next = new_cylinder;
-		vars->objects.cylinder->next->next = NULL;
+		iterator = vars->objects.cylinder;
+		while (iterator->next != NULL)
+			iterator = iterator->next;
+		iterator->next = new_cylinder;
+		iterator->next->next = NULL;
 	}
 	new_cylinder->color = 0;
 	vars->need_cleared[CYLINDER] = 1;
@@ -57,22 +55,22 @@ static t_cylinder	*create_cylinder(t_vars *vars)
 ** ________________________________________________________________MAIN FUNCTION
 */
 
-void			get_cylinder(t_vars *vars, char *str)
+void				get_cylinder(t_vars *vars, char *str)
 {
 	t_cylinder		*cylinder;
 
 	cylinder = create_cylinder(vars);
-	str += 2;
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, cylinder->coordinates))
+	if (!get_coordinates(&str, &cylinder->coordinates))
 		errorka(vars, INCORRECT_CYLINDER);
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, cylinder->normal_vector))
+	if (!get_coordinates(&str, &cylinder->orientation))
 		errorka(vars, INCORRECT_CYLINDER);
-	if (1 < cylinder->normal_vector[0] || cylinder->normal_vector[0] < -1 ||
-		1 < cylinder->normal_vector[1] || cylinder->normal_vector[1] < -1 ||
-		1 < cylinder->normal_vector[2] || cylinder->normal_vector[2] < -1)
+	if (len_vector(cylinder->orientation) > 1 ||
+		len_vector(cylinder->orientation) == 0)
 		errorka(vars, INCORRECT_CYLINDER);
+	cylinder->orientation = multiplying_vector(cylinder->orientation,
+									1.0 / len_vector(cylinder->orientation));
 	skip_space(vars, &str);
 	if (!get_dbl_num_in_range(&str, &cylinder->diameter, INT_MIN + 1, INT_MAX))
 		errorka(vars, INCORRECT_CYLINDER);

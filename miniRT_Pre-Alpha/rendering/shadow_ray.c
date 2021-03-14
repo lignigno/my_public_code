@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 22:00:58 by lignigno          #+#    #+#             */
-/*   Updated: 2021/02/28 22:01:00 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/03/13 08:17:58 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void		gradient_level(t_inter intersection,
 	light.coordinates = sum_vector(light.coordinates, -1, intersection.point);
 	distans = len_vector(light.coordinates);
 	level = cos_vectors(light.coordinates, normal_vector) /
-				(0.0005 * distans * distans + 0.04 * distans + 1);
+				(A * distans * distans + B * distans + C);
 	if (level > 0)
 		*color = multiplying_vector(*color, level);
 	else

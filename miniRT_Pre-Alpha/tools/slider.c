@@ -6,9 +6,8 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:59:53 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/10 02:05:07 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:36:06 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project_header.h"
-

@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:44:04 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/29 13:42:55 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/18 03:38:21 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int				get_dbl_num_in_range(char **str, double *num, int from, int to)
 	if (**str == '0')
 	{
 		if (*++(*str) != '.')
-			return (!(*num = 0));
+			return (!(*num = 0.0));
 		(*str)++;
 		if (!get_fract_part(str, number, num, minus))
 			return (0);

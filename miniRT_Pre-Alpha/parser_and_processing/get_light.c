@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 14:33:27 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/30 03:25:06 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/18 02:30:27 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,10 @@ static void		skip_space(t_vars *vars, char **str)
 		(*str)++;
 }
 
-/*
-** //printf("cam_create : %p\n", new_cam);
-*/
-
 static t_light	*create_light(t_vars *vars)
 {
 	t_light		*new_light;
+	t_light		*iterator;
 
 	new_light = malloc(sizeof(t_light));
 	if (new_light == NULL)
@@ -42,10 +39,11 @@ static t_light	*create_light(t_vars *vars)
 	}
 	else
 	{
-		while (vars->objects.light->next != NULL)
-			vars->objects.light = vars->objects.light->next;
-		vars->objects.light->next = new_light;
-		vars->objects.light->next->next = NULL;
+		iterator = vars->objects.light;
+		while (iterator->next != NULL)
+			iterator = iterator->next;
+		iterator->next = new_light;
+		iterator->next->next = NULL;
 	}
 	new_light->color = 0;
 	vars->need_cleared[LIGHT] = 1;
@@ -65,7 +63,7 @@ void			get_light(t_vars *vars, char *str)
 	light = create_light(vars);
 	str++;
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, light->coordinates))
+	if (!get_coordinates(&str, &light->coordinates))
 		errorka(vars, INCORRECT_LIGHT);
 	skip_space(vars, &str);
 	if (!get_dbl_num_in_range(&str, &alpha, 0, 1))

@@ -6,13 +6,13 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 03:30:02 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/30 22:13:19 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:37:26 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project_header.h"
 
-/*d
+/*
 ** __________________________________________________________________SUBFUNCTION
 */
 
@@ -24,13 +24,11 @@ static void		skip_space(t_vars *vars, char **str)
 		(*str)++;
 }
 
-/*
-** //printf("cam_create : %p\n", new_cam);
-*/
-
 static t_sphere	*create_sphere(t_vars *vars)
 {
 	t_sphere		*new_sphere;
+	t_sphere		*iterator;
+
 	new_sphere = malloc(sizeof(t_sphere));
 	if (new_sphere == NULL)
 		errorka(vars, NMA_SPHERE);
@@ -41,10 +39,11 @@ static t_sphere	*create_sphere(t_vars *vars)
 	}
 	else
 	{
-		while (vars->objects.sphere->next != NULL)
-			vars->objects.sphere = vars->objects.sphere->next;
-		vars->objects.sphere->next = new_sphere;
-		vars->objects.sphere->next->next = NULL;
+		iterator = vars->objects.sphere;
+		while (iterator->next != NULL)
+			iterator = iterator->next;
+		iterator->next = new_sphere;
+		iterator->next->next = NULL;
 	}
 	new_sphere->color = 0;
 	new_sphere->diameter = 0.0;
@@ -64,7 +63,7 @@ void			get_sphere(t_vars *vars, char *str)
 	sphere = create_sphere(vars);
 	str += 2;
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, sphere->coordinates))
+	if (!get_coordinates(&str, &sphere->coordinates))
 		errorka(vars, INCORRECT_SPHERE);
 	skip_space(vars, &str);
 	if (!get_dbl_num_in_range(&str, &sphere->diameter, INT_MIN + 1, INT_MAX))

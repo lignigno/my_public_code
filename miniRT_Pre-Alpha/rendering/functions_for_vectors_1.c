@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 00:41:39 by lignigno          #+#    #+#             */
-/*   Updated: 2021/02/28 22:17:58 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/03/13 14:11:47 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,11 @@ t_vector		vector_rotate(t_vector vector, t_vector axis, double angle)
 ** ________________________________________________________________MAIN FUNCTION
 */
 
+// this comment for wolf.rt
+
 t_vector		calculating_normal_vector(t_vector orientation)
 {
+	// double		tmp;
 	t_vector	normal_vector;
 
 	if (orientation.z == 0)
@@ -109,5 +112,9 @@ t_vector		calculating_normal_vector(t_vector orientation)
 	}
 	normal_vector = multiplying_vector(normal_vector,
 										len_vector(normal_vector));
+	normal_vector.z *= -1;
+	// tmp = -normal_vector.z;
+	// normal_vector.z = normal_vector.y;
+	// normal_vector.y = tmp;
 	return (normal_vector);
 }

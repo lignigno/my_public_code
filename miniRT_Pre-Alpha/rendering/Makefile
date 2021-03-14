@@ -6,7 +6,7 @@
 #    By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/16 14:13:57 by lignigno          #+#    #+#              #
-#    Updated: 2021/02/26 13:39:07 by lignigno         ###   ########.fr        #
+#    Updated: 2021/03/13 10:51:55 by lignigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,8 @@ SRC :=	main_render.c \
 
 OBJ := $(addprefix ../obj/, $(SRC:.c=.o))
 
-FLAGS := -Wall -Wextra -Werror
-
-#$(FLAGS)
 all : $(OBJ)
+	@echo "$(GREEN_COL)mrendering ready\033[0m"
 
 ../obj/%.o : %.c ../project_header.h
-	gcc -g3 $(FLAGS) -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@

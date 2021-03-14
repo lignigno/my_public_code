@@ -6,7 +6,7 @@
 #    By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 05:39:35 by lignigno          #+#    #+#              #
-#    Updated: 2021/01/21 13:23:15 by lignigno         ###   ########.fr        #
+#    Updated: 2021/03/13 10:51:10 by lignigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,8 @@ SRC := slider.c
 
 OBJ := $(addprefix ../obj/, $(SRC:.c=.o))
 
-FLAGS := -Wall -Wextra -Werror
-
-#$(FLAGS)
 all : $(OBJ)
+	@echo "$(GREEN_COL)mtools ready\033[0m"
 
 ../obj/%.o : %.c ../project_header.h
-	gcc -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@

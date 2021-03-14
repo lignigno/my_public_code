@@ -6,7 +6,7 @@
 #    By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 05:39:35 by lignigno          #+#    #+#              #
-#    Updated: 2021/01/31 01:04:22 by lignigno         ###   ########.fr        #
+#    Updated: 2021/03/13 10:52:00 by lignigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,8 @@ SRC :=	processing_input_values.c \
 
 OBJ := $(addprefix ../obj/, $(SRC:.c=.o))
 
-FLAGS := -Wall -Wextra -Werror
-
-#$(FLAGS)
 all : $(OBJ)
+	@echo "$(GREEN_COL)mparser_and_processing ready\033[0m"
 
 ../obj/%.o : %.c ../project_header.h
-	gcc -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@

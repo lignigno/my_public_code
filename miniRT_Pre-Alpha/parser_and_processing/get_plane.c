@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 15:06:09 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/30 03:32:11 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/26 16:54:20 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ static void		skip_space(t_vars *vars, char **str)
 		(*str)++;
 }
 
-/*
-** //printf("cam_create : %p\n", new_cam);
-*/
-
 static t_plane	*create_plane(t_vars *vars)
 {
 	t_plane		*new_plane;
+	t_plane		*iterator;
+
 	new_plane = malloc(sizeof(t_plane));
 	if (new_plane == NULL)
 		errorka(vars, NMA_PLANE);
@@ -41,10 +39,11 @@ static t_plane	*create_plane(t_vars *vars)
 	}
 	else
 	{
-		while (vars->objects.plane->next != NULL)
-			vars->objects.plane = vars->objects.plane->next;
-		vars->objects.plane->next = new_plane;
-		vars->objects.plane->next->next = NULL;
+		iterator = vars->objects.plane;
+		while (iterator->next != NULL)
+			iterator = iterator->next;
+		iterator->next = new_plane;
+		iterator->next->next = NULL;
 	}
 	new_plane->color = 0;
 	vars->need_cleared[PLANE] = 1;
@@ -63,14 +62,16 @@ void			get_plane(t_vars *vars, char *str)
 	plane = create_plane(vars);
 	str += 2;
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, plane->coordinates))
+	if (!get_coordinates(&str, &plane->coordinates))
 		errorka(vars, INCORRECT_PLANE);
 	skip_space(vars, &str);
-	if (!get_coordinates(&str, plane->normal_vector))
+	if (!get_coordinates(&str, &plane->normal_vector))
 		errorka(vars, INCORRECT_PLANE);
-	if (1 < plane->normal_vector[0] || plane->normal_vector[0] < -1 ||
-		1 < plane->normal_vector[1] || plane->normal_vector[1] < -1 ||
-		1 < plane->normal_vector[2] || plane->normal_vector[2] < -1)
+	if (1 < plane->normal_vector.x || plane->normal_vector.x < -1 ||
+		1 < plane->normal_vector.y || plane->normal_vector.y < -1 ||
+		1 < plane->normal_vector.z || plane->normal_vector.z < -1 ||
+		len_vector(plane->normal_vector) > 1 ||
+		len_vector(plane->normal_vector) == 0)
 		errorka(vars, INCORRECT_PLANE);
 	skip_space(vars, &str);
 	if (!add_rgb(&str, &plane->color))

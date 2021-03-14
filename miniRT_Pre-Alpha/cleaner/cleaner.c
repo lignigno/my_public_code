@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 18:09:30 by lignigno          #+#    #+#             */
-/*   Updated: 2021/01/29 13:04:28 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:44:10 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,14 @@ static void	clear_only(t_vars *vars)
 	vars->need_cleared[CLEAR_ONLY] = 0;
 }
 
-/*
-** printf("need_cleared[%i] : %i\n", i, vars->need_cleared[i]);
-*/
-
-static void clear_all(t_vars *vars)
+static void	clear_all(t_vars *vars)
 {
 	int		i;
 
 	i = 1;
 	while (i < 21)
 	{
-		if (vars->need_cleared[i])
+		if (vars->need_cleared[i] && i != CAM_IMG)
 			vars->cleared_func[i](vars);
 		i++;
 	}
@@ -49,9 +45,7 @@ static void clear_all(t_vars *vars)
 void		cleaner(t_vars *vars)
 {
 	if (vars->need_cleared[CLEAR_ONLY])
-	{
 		clear_only(vars);
-		return ;
-	}
-	clear_all(vars);
+	else
+		clear_all(vars);
 }

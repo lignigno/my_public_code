@@ -6,7 +6,7 @@
 #    By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/30 02:50:04 by lignigno          #+#    #+#              #
-#    Updated: 2021/01/21 05:52:27 by lignigno         ###   ########.fr        #
+#    Updated: 2021/03/13 10:50:16 by lignigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,9 @@ OBJ := $(addprefix obj/, $(OBJ))
 
 #<<<<<<<<[FLAGS]>>>>>>>>
 
-FLAG := -I. -Wall -Wextra -Werror
+LIB_FLAGS := -O3 -Wall -Wextra -Werror
+
+export LIB_FLAGS
 
 # _______________________________________________________________________TARGETS
 
@@ -59,10 +61,10 @@ all: $(NAME)
 
 $(NAME): obj/ other_compil $(OBJ)
 	@ar rus $(NAME) $(OBJ)
-	@echo "\033[32;1m$(NAME) was created\033[0m"
+	@echo "\033[38;2;0;145;15m$(NAME) was created\033[0m"
 
 obj/%.o : %.c libft.h gnl/gnl.h
-	gcc $(FLAG) -c $< -o $@
+	gcc $(LIB_FLAGS) -c $< -o $@
 
 other_compil:
 	@make -C gnl/
@@ -74,10 +76,10 @@ obj/ :
 
 clean:
 	@rm -rf obj/
-	@echo "\033[33;1mobject files for $(NAME) have been deleted\033[0m"
+	@echo "\033[33;4;1mobject\033[0;33;1m files for \033[33;4;1m$(NAME)\033[0;33;1m have been deleted\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[33;1m$(NAME) have been deleted\033[0m"
+	@echo "\033[33;4;1m$(NAME)\033[0;33;1m have been deleted\033[0m"
 
 re: fclean all
