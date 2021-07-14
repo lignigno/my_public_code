@@ -22,15 +22,16 @@ static void	eating(t_chair *place, size_t *last_eating)
 	logs(place->v, place->seat_number, "has taken a fork");
 	if (get_time() - *last_eating > ((t_v *)place->v)->time_to_die)
 		errorka_2(place->v, place->seat_number);
-	logs(place->v, place->seat_number, "is eating");
 	*last_eating = get_time();
+	logs(place->v, place->seat_number, "is eating");
 	while (get_time() - *last_eating < ((t_v *)place->v)->time_to_eat)
 	{
 		if (get_time() - *last_eating > ((t_v *)place->v)->time_to_die)
 			errorka_2(place->v, place->seat_number);
 		usleep(500);
 	}
-	place->count++;
+	if (++place->count == ((t_v *)(place->v))->each_must_eat)
+		sem_post(((t_v *)(place->v))->program_sem[HAVE_EATEN]);
 	sem_post(place->forks_tray);
 	sem_post(place->forks_tray);
 }

@@ -17,7 +17,7 @@
 void	finish(t_v *v)
 {
 	sem_wait(v->program_sem[WRITE_SEM]);
-	write(1, FINISH_COLOR, ft_strlen(FINISH_COLOR));
+	write(2, FINISH_COLOR, ft_strlen(FINISH_COLOR));
 	ft_putnbr(get_time() - v->start_time, 1);
-	write(1, " finish\033[m\n", 11);
+	write(2, " finish\033[m\n", 11);
 }

@@ -25,7 +25,9 @@
 
 enum e_programs_names
 {
+	IS_DEATH,
 	WRITE_SEM,
+	HAVE_EATEN,
 	TRAY_FOR_FORKS,
 	COUNT_NAMES,
 };
@@ -50,8 +52,10 @@ typedef struct s_v
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	int				each_must_eat;
+	size_t			count_philo_ready;
 	size_t			start_time;
 	int				error;
+	int				finish;
 	sem_t			**program_sem;
 }				t_v;
 
@@ -64,7 +68,7 @@ int		checking_input_values(int argc, char *argv[]);
 long	errorka_0(char *error_message, int ret_value);
 long	errorka_1(char *what_wrong, char *variable, char *value);
 void	errorka_2(t_v *v, int seat_number);
-int		finish(t_v *v, int seat_number);
+void	finish(t_v *v);
 
 // _________________________________________________________________________INIT
 
@@ -81,5 +85,9 @@ size_t	ft_strlen(const char *s);
 size_t	get_time(void);
 void	logs(t_v *v, int seat_number, char *movement);
 int		sini(char *str_with_number);
+
+// ___________________________________________________________________WAIT PHILO
+
+int	wait_philosophers(t_v *v);
 
 #endif

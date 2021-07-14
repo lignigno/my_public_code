@@ -16,11 +16,13 @@
 
 static void	init_simple_variables(t_v *v, int argc, char *argv[])
 {
+	v->finish = 0;
+	v->each_must_eat = -1;
+	v->count_philo_ready = 0;
 	v->count_of_philo = sini(argv[1]);
 	v->time_to_die = sini(argv[2]);
 	v->time_to_eat = sini(argv[3]);
 	v->time_to_sleep = sini(argv[4]);
-	v->each_must_eat = -1;
 	v->error = 0;
 	if (argc > 5)
 		v->each_must_eat = sini(argv[5]);

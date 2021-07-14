@@ -22,7 +22,9 @@ int	init_names(t_v *v)
 		v->error = errorka_0("can't create array of names", 1);
 		return (0);
 	}
+	v->names[IS_DEATH] = "is_death";
 	v->names[WRITE_SEM] = "write_sem";
+	v->names[HAVE_EATEN] = "have_eaten";
 	v->names[TRAY_FOR_FORKS] = "tray_for_forks";
 	return (1);
 }

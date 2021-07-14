@@ -22,5 +22,6 @@ void	errorka_2(t_v *v, int seat_number)
 	write(2, " ", 1);
 	ft_putnbr(seat_number, 2);
 	write(2, " died\n\033[m", 9);
+	sem_post(v->program_sem[IS_DEATH]);
 	v->each_must_eat = 0;
 }

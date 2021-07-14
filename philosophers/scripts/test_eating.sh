@@ -13,6 +13,7 @@
 # **************************************************************************** #
 
 OUTPUT_FILE="test_eating.txt"
+RESULT_FILE="result.txt"
 PATH_TO_PHILO_DIR=$(pwd)/
 R="\033[1;38;2;176;5;25m"
 G="\033[1;38;2;50;150;20m"
@@ -94,14 +95,16 @@ then
 fi
 
 # check output values
+> $RESULT_FILE
 for (( i=1; $i<=$1; i=$(($i+1)) ))
 do
-	printf "philo %3i eating" $i
+	printf "philo %3i eating" $i >> $RESULT_FILE
 	COUNT=$(cat $OUTPUT_FILE | grep " $i is eating" | wc -l)
 	if [ $COUNT -ge $5 ];
 	then
-		echo -e "$G$COUNT$UN"
+		echo -e "$G$COUNT$UN" >> $RESULT_FILE
 	else
-		echo -e "$R$COUNT$UN"
+		echo -e "$R$COUNT$UN" >> $RESULT_FILE
 	fi
 done
+cat $RESULT_FILE

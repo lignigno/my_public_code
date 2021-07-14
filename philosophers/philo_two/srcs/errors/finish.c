@@ -14,15 +14,10 @@
 
 // ____________________________________________________________________MAIN FUNC
 
-int	finish(t_v *v, int seat_number)
+void	finish(t_v *v)
 {
 	sem_wait(v->program_sem[WRITE_SEM]);
 	write(2, FINISH_COLOR, ft_strlen(FINISH_COLOR));
 	ft_putnbr(get_time() - v->start_time, 2);
-	write(2, " ", 1);
-	ft_putnbr(seat_number, 2);
-	write(2, " ", 1);
-	write(2, "finish", ft_strlen("finish"));
-	write(2, "\n\033[m", 4);
-	return (1);
+	write(2, " finish\033[m\n", 11);
 }
