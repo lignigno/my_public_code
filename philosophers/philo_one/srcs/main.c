@@ -26,10 +26,7 @@ static int	wait_philosophers(t_v *v)
 	while (v->each_must_eat > 0)
 	{
 		if (iterator->count == v->each_must_eat)
-		{
 			count_philo_ready++;
-			iterator->count++;
-		}
 		if (count_philo_ready == count_philo)
 			return (finish(v, iterator->seat_number));
 		iterator = iterator->right_chair;
