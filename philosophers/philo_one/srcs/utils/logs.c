@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 15:30:04 by lignigno          #+#    #+#             */
-/*   Updated: 2021/06/19 10:02:25 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/20 21:45:35 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ static int	ft_putnbr_in_dst(char *dst, int position, size_t n)
 
 // ____________________________________________________________________MAIN FUNC
 
-void	logs(t_v *v, int seat_number, char *movement)
+void	logs(t_v *v, t_chair *place, char *movement)
 {
 	char	msg[50];
 	int		i;
 	int		j;
 
-	i = ft_putnbr_in_dst(msg, 0, get_time() - v->start_time);
+	i = ft_putnbr_in_dst(msg, 0, get_time() - place->start_time);
 	msg[i++] = ' ';
-	i = ft_putnbr_in_dst(msg, i, seat_number);
+	i = ft_putnbr_in_dst(msg, i, place->seat_number);
 	msg[i++] = ' ';
 	j = 0;
 	while (movement[j])

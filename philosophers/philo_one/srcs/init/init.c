@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:50:02 by lignigno          #+#    #+#             */
-/*   Updated: 2021/07/08 04:43:50 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/20 20:50:35 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ t_v	*init(int argc, char *argv[])
 		return ((t_v *)(errorka_0("failed to create main structure", 0)));
 	init_simple_variables(v, argc, argv);
 	if (pthread_mutex_init(&v->write_mutex, NULL))
+	{
+		v->error = errorka_0("the mutex was not initialized", 1);
+		return (v);
+	}
+	if (pthread_mutex_init(&v->have_eaten, NULL))
 	{
 		v->error = errorka_0("the mutex was not initialized", 1);
 		return (v);

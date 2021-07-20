@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:11:28 by lignigno          #+#    #+#             */
-/*   Updated: 2021/07/08 04:48:38 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/20 21:03:27 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,10 @@
 
 static int	wait_philosophers(t_v *v)
 {
-	t_chair	*iterator;
-	int		count_philo;
-	int		count_philo_ready;
-
-	iterator = v->table;
-	count_philo_ready = 0;
-	count_philo = ((t_chair *)v->table->left_chair)->seat_number;
 	while (v->each_must_eat > 0)
 	{
-		if (iterator->count == v->each_must_eat)
-			count_philo_ready++;
-		if (count_philo_ready == count_philo)
-			return (finish(v, iterator->seat_number));
-		iterator = iterator->right_chair;
+		if (!v->count_of_philo)
+			return (finish(v));
 		usleep(500);
 	}
 	while (v->each_must_eat < 0)
