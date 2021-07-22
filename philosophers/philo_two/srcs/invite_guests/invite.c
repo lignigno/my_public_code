@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 23:19:40 by lignigno          #+#    #+#             */
-/*   Updated: 2021/07/13 03:25:36 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/22 16:03:04 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	*philo_life(void *var)
 	size_t	last_eating;
 
 	place = var;
-	last_eating = ((t_v *)place->v)->start_time;
+	last_eating = get_time();
 	if (place->seat_number % 2)
 		eating(place, &last_eating);
 	while (1)
