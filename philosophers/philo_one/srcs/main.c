@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:11:28 by lignigno          #+#    #+#             */
-/*   Updated: 2021/07/20 21:03:27 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/28 02:10:15 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	wait_philosophers(t_v *v)
 {
 	while (v->each_must_eat > 0)
 	{
-		if (!v->count_of_philo)
+		if (v->count_of_philo < 1)
 			return (finish(v));
 		usleep(500);
 	}
