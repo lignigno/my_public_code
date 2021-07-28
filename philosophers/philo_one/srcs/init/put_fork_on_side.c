@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:43:47 by lignigno          #+#    #+#             */
-/*   Updated: 2021/06/19 11:33:52 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/28 17:56:36 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ int	put_fork_on_side(t_chair *table, int side)
 		if (!first_chair)
 			first_chair = iter->seat_number;
 		if (side == LEFT)
-			status = pthread_mutex_init(&iter->left_fork, NULL);
+		{
+			iter->left_fork = malloc(sizeof(pthread_mutex_t));
+			if (!iter->left_fork)
+				return (0);
+			status = pthread_mutex_init(iter->left_fork, NULL);
+		}
 		else
 			iter->right_fork = ((t_chair *)iter->right_chair)->left_fork;
 		if (status)

@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 23:19:40 by lignigno          #+#    #+#             */
-/*   Updated: 2021/07/20 21:58:19 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/28 17:57:32 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static void	eating(t_chair *place, size_t *last_eating)
 {
-	pthread_mutex_lock(&place->left_fork);
+	pthread_mutex_lock(place->left_fork);
 	logs(place->v, place, "has taken a left fork");
-	pthread_mutex_lock(&place->right_fork);
+	pthread_mutex_lock(place->right_fork);
 	logs(place->v, place, "has taken a right fork");
 	if (get_time() - *last_eating > ((t_v *)place->v)->time_to_die)
 		errorka_2(place->v, place);
@@ -36,8 +36,8 @@ static void	eating(t_chair *place, size_t *last_eating)
 		((t_v *)place->v)->count_of_philo--;
 		pthread_mutex_unlock(&((t_v *)place->v)->have_eaten);
 	}
-	pthread_mutex_unlock(&place->left_fork);
-	pthread_mutex_unlock(&place->right_fork);
+	pthread_mutex_unlock(place->left_fork);
+	pthread_mutex_unlock(place->right_fork);
 }
 
 //                                                                             |

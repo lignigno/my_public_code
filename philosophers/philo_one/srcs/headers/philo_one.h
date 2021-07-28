@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 16:12:23 by lignigno          #+#    #+#             */
-/*   Updated: 2021/07/20 21:49:07 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/28 17:54:10 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_chair
 	int				count;
 	void			*v;
 	pthread_t		philo;
-	pthread_mutex_t	left_fork;
-	pthread_mutex_t	right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	void			*left_chair;
 	void			*right_chair;
 	size_t			start_time;
