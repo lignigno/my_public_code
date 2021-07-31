@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 10:34:46 by lignigno          #+#    #+#             */
-/*   Updated: 2021/07/13 02:13:13 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:20:40 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ int		sini(char *str_with_number);
 
 // ___________________________________________________________________WAIT PHILO
 
-int	wait_philosophers(t_v *v);
+int		wait_philosophers(t_v *v);
 
 #endif
