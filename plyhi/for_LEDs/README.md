@@ -19,3 +19,15 @@ code for ***stm32 + ws2812b***
 <br><hr><br>
 ![code_example_4](/plyhi/for_LEDs/img_for_git/code_4.png) ![res_example_4](/plyhi/for_LEDs/img_for_git/res_4.png)
 <br><hr><br>
+![code_example_5](/plyhi/for_LEDs/img_for_git/code_5.png)
+<br>
+![res_example_5.0](/plyhi/for_LEDs/img_for_git/res_5.0.png)
+![res_example_5.1](/plyhi/for_LEDs/img_for_git/res_5.1.png)
+![res_example_5.2](/plyhi/for_LEDs/img_for_git/res_5.2.png)
+![res_example_5.3](/plyhi/for_LEDs/img_for_git/res_5.3.png)
+![res_example_5.4](/plyhi/for_LEDs/img_for_git/res_5.4.png)
+![res_example_5.5](/plyhi/for_LEDs/img_for_git/res_5.5.png)
+![res_example_5.6](/plyhi/for_LEDs/img_for_git/res_5.6.png)
+![res_example_5.7](/plyhi/for_LEDs/img_for_git/res_5.7.png)
+![res_example_5.8](/plyhi/for_LEDs/img_for_git/res_5.8.png)
+![res_example_5.9](/plyhi/for_LEDs/img_for_git/res_5.9.png)
