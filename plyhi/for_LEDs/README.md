@@ -31,3 +31,4 @@ code for ***stm32 + ws2812b***
 ![res_example_5.7](/plyhi/for_LEDs/img_for_git/res_5.7.png)
 ![res_example_5.8](/plyhi/for_LEDs/img_for_git/res_5.8.png)
 ![res_example_5.9](/plyhi/for_LEDs/img_for_git/res_5.9.png)
+<br><hr><br>
