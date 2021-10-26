@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 23:44:11 by lignigno          #+#    #+#             */
-/*   Updated: 2021/10/26 23:30:48 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/10/27 00:50:35 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 #define LED_OFF 0
 
 #define STRIPLEN 21
-#define STRIPLEN_BIT (STRIPLEN * 24)
+// + 1 to get rid of garbage when calling HAL_TIM_PWM_Start_DMA
+#define STRIPLEN_BIT (STRIPLEN * 24 + 1)
 
 // ___________________________________________________________TYPEDEFS / STRUCTS
 
@@ -47,8 +48,8 @@ typedef struct color_s
 
 // ___________________________________________________________________PROTOTYPES
 
-void	LightUpLEDsIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t (*colFunc)(u16_t));
-void	LightUpLEDs(data_bits_t lightBitTrain[], u16_t from, u16_t to, const color_t *color);
+u64_t	LightUpLEDsIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t (*colFunc)(u16_t));
+u64_t	LightUpLEDs(data_bits_t lightBitTrain[], u16_t from, u16_t to, const color_t *color);
 void	ShowLEDStrip(data_bits_t lightBitTrain[], u32_t numLEDs);
 
 #endif //LED_H

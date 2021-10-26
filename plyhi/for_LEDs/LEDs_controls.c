@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 03:30:03 by lignigno          #+#    #+#             */
-/*   Updated: 2021/10/26 04:02:49 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/10/27 00:51:45 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
  * 		@param from which LED to start with (including it). The first LED is 0.
  * 		@param to which LED to finish with (not including it).
  * 		@param col_func function for calculating the color of the LED by its number.
+ * 		@return the number of bits to be transmitted + 1
 */
-void	LightUpLEDsIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t (*colFunc)(u16_t))
+u64_t	LightUpLEDsIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t (*colFunc)(u16_t))
 {
 	u32_t		i;
 	u32_t		bit;
@@ -51,6 +52,8 @@ void	LightUpLEDsIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t 
 		}
 		++i;
 	}
+	lightBitTrain[to * 24] = 0;
+	return ((to - 1) * 24 + 1);
 }
 
 //                                                                             |
@@ -64,8 +67,9 @@ void	LightUpLEDsIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t 
  * 		@param from which LED to start with (including it). The first LED is 0.
  * 		@param to which LED to finish with (not including it).
  * 		@param color what color should be installed on the LEDs in the range [from ; to).
+ * 		@return the number of bits to be transmitted + 1
 */
-void	LightUpLEDs(data_bits_t lightBitTrain[], u16_t from, u16_t to, const color_t *color)
+u64_t	LightUpLEDs(data_bits_t lightBitTrain[], u16_t from, u16_t to, const color_t *color)
 {
 	u32_t		i;
 	u32_t		bit;
@@ -92,6 +96,8 @@ void	LightUpLEDs(data_bits_t lightBitTrain[], u16_t from, u16_t to, const color_
 		}
 		++i;
 	}
+	lightBitTrain[to * 24] = 0;
+	return (to * 24 + 1);
 }
 
 //                                                                             |
