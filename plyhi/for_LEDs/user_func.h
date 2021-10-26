@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 23:49:48 by lignigno          #+#    #+#             */
-/*   Updated: 2021/10/25 23:51:41 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/10/26 03:58:56 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 #include "LED.h"
 
 color_t	EvenOdd(u16_t num);
+color_t	RainbowPos(u16_t num);
 
 #endif

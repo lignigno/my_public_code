@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 23:44:11 by lignigno          #+#    #+#             */
-/*   Updated: 2021/10/25 23:52:49 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/10/26 03:59:25 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 #define LED_ON 1
 #define LED_OFF 0
 
+#define STRIPLEN 21
+#define STRIPLEN_BIT (STRIPLEN * 24)
+
 // ___________________________________________________________TYPEDEFS / STRUCTS
 
 // set   user type
@@ -30,6 +33,7 @@
 typedef u_int8_t	u8_t;	// unsigned 8-bit type
 typedef u_int16_t	u16_t;	// unsigned 16-bit type
 typedef u_int32_t	u32_t;	// unsigned 32-bit type
+typedef u_int64_t	u64_t;	// unsigned 64-bit type
 
 typedef	u8_t	spectrum_t;
 typedef u16_t	data_bits_t;
