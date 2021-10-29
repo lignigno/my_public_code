@@ -1,4 +1,5 @@
-# A little code for convenient generation of a sequence of colors <br>
+# (the information is outdated. the information will be updated soon)
+# ~~A little code for convenient generation of a sequence of colors ~~<br>
 
 ### launch
 > bash-3.2$ make <br>
