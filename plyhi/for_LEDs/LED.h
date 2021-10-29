@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 23:44:11 by lignigno          #+#    #+#             */
-/*   Updated: 2021/10/27 00:50:35 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/10/29 06:58:49 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,21 @@
 
 // _____________________________________________________________________INCLUDES
 
-#include <stdio.h>
+#include <stdio.h> // for ShowLEDStrip
 
 // ______________________________________________________________________DEFINES
 
-#define LED_ON 1
-#define LED_OFF 0
+// replace with your T0H value for the PWM signal width.
+// LED_OFF must not be equal to 0
+#define LED_OFF 10
+
+// replace with your T1H value for the PWM signal width
+// LED_ON must be more LED_OFF
+#define LED_ON 20
+
+// BRIGHTNESS [0 ; 255]
+#define BRIGHTNESS 255
+#define RAINBOW_PERIOD (BRIGHTNESS * 6)
 
 #define STRIPLEN 21
 // + 1 to get rid of garbage when calling HAL_TIM_PWM_Start_DMA
@@ -48,8 +57,10 @@ typedef struct color_s
 
 // ___________________________________________________________________PROTOTYPES
 
-u64_t	LightUpLEDsIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t (*colFunc)(u16_t));
-u64_t	LightUpLEDs(data_bits_t lightBitTrain[], u16_t from, u16_t to, const color_t *color);
-void	ShowLEDStrip(data_bits_t lightBitTrain[], u32_t numLEDs);
+void	LightUpSingleLEDIter(data_bits_t lightBitTrain[], u16_t position, color_t (*colFunc)(u16_t));
+void	LightUpSingleLED(data_bits_t lightBitTrain[], u16_t position, const color_t *color);
+u64_t	LightUpLEDsRangeIter(data_bits_t lightBitTrain[], u16_t from, u16_t to, color_t (*colFunc)(u16_t));
+u64_t	LightUpLEDsRange(data_bits_t lightBitTrain[], u16_t from, u16_t to, const color_t *color);
+void	ShowLEDStrip(data_bits_t lightBitTrain[], u32_t num_data);
 
 #endif //LED_H
