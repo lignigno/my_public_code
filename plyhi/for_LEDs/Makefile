@@ -6,7 +6,7 @@
 #    By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/03 16:11:24 by lignigno          #+#    #+#              #
-#    Updated: 2021/10/26 00:04:29 by lignigno         ###   ########.fr        #
+#    Updated: 2021/10/29 07:44:40 by lignigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ COL_1					:=	\033[38;2;46;84;240
 COL_2					:=	\033[37
 UNSET					:=	\033[m
 
-NAME					:=	run
+NAME					:=	LED_example
 
-SRC_DIR					:=	.
+SRC_DIR					:=	srcs
 OBJ_DIR					:=	obj
 FLAGS					:=	-O2 -Wall -Wextra -Werror
-INCLUDE					:=	$(SRC_DIR)/
+INCLUDE					:=	$(SRC_DIR)/incs
 VPATH					:=	$(shell find $(SRC_DIR) -type d)
 
 SRC						:=	$(wildcard $(addsuffix /*.c, $(VPATH)))
