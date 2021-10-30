@@ -1,5 +1,4 @@
-# (the information is outdated. The information will be updated soon)
-# <strike>A little code for convenient generation of a sequence of colors</strike><br>
+# A little code for convenient generation of a sequence of colors<br>
 
 ### launch
 bash-3.2$ make <br>
@@ -25,6 +24,28 @@ code for ***stm32 + ws2812b***
 <br><hr><br>
 ![code_example_5](/plyhi/for_LEDs/img_for_git/code_5.png) ![res_example_5](/plyhi/for_LEDs/img_for_git/res_5.png)
 <br><hr><br>
+
+> In this example, I use "LightUpSingleLEDIter" instead of "LightUpLEDsRangeIter".
+> This is because the "LightUpLEDsRangeIter" after generating a sequence of bits
+> for few LEDs sets another bit to 0 to avoid garbage when generating PWM in CIRC mode.
+> And this bit changes the color of the next LED.<br>
+> As example :<br>
+> FALSE = 13;<br>
+> TRUE = 26;<br>
+> RESET = 0;<br>
+> LED_0 = |13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13| "BLACK"<br>
+> LED_1 = |13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13| "BLACK"<br>
+> LED_2 = |26|26|26|26|26|26|26|26|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13| "RED"<br>
+> LightUpLEDsRangeIter(arr, 1, 2, color /* 0x0000FF */);<br>
+> LED_0 = |13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|<br>
+> LED_1 = |13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|26|26|26|26|26|26|26|26|<br>
+> LED_2 = |0|26|26|26|26|26|26|26|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|13|
+
 ![code_example_6](/plyhi/for_LEDs/img_for_git/code_6.png) ![res_example_6](/plyhi/for_LEDs/img_for_git/res_6.png)
 <br><hr><br>
-![res_example_6](/plyhi/for_LEDs/img_for_git/volume.mov)
+
+> An example of what can be done with an LED strip using these functions.<br>
+> (yes, you can assemble a lightmusic or an equalizer)
+
+![res_example_7](/plyhi/for_LEDs/img_for_git/volume.gif)
+<br><hr><br>
