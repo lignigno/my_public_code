@@ -6,12 +6,14 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 04:54:21 by lignigno          #+#    #+#             */
-/*   Updated: 2021/10/30 09:48:43 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/11/02 10:41:32 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef USER_FUNC_H
 #define USER_FUNC_H
+
+#include "buzzer.h"
 
 // BASE OCTAVE
 

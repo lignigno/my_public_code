@@ -6,44 +6,51 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 07:53:19 by lignigno          #+#    #+#             */
-/*   Updated: 2021/10/30 12:26:18 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/11/02 10:39:43 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "buzzer.h"
+#include "user_func.h"
 
-void	setSound(u64_t hz, u8_t volume)
+// _____________________________________________________________________________
+
+void  Sart_DMA(uint32_t *pData, uint16_t Length)
 {
-    // TIM_OC_InitTypeDef sConfigOC;
+	HAL_TIM_PWM_Start_DMA(&htim1, TIM_CHANNEL_1, (uint32_t *)pData, Length);
+}
 
-	volume = volume < 100 ? volume : 99;
+void  Stop_DMA(void)
+{
+  HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_1);
+}
 
-	// you reconfigs
+// _____________________________________________________________________________
 
-	// set bit for circular dma
-	// DMA->CCR2 |= CIRC;
+void  SetSound(uint64_t hz, uint8_t volume)
+{
+	volume = volume < 101 ? volume : 100;
 
-	// set Period in 100
-	// htim1.Init.Period = 99;
+	DMA1_Channel2->CCR |= DMA_CCR_CIRC;
+	TIM1->ARR = 100;
+	TIM1->PSC = MKHz / (LEN_SINGNAL * TIM1->ARR * hz);
 
-	// prescaler = MCHz / Period / hz
-	/*
-		короче... я знаю на какой частоте работает таймер мк и
-		просто поставлю частоту через свой define
-		хоть и знаю что можно через собрать весь путь от HSE
-		до шины на которой работает таймер
-	*/
-	// htim1.Init.Prescaler = MC_Hz / htim1.Init.Period / hz;
+	singleSignal[0] = volume;
+	Sart_DMA((uint32_t *)singleSignal, LEN_SINGNAL);
+}
 
-	// if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-	// {
-	// 	Error_Handler();
-	// }
+void  UnSetSound(void)
+{
+	Stop_DMA();
+}
 
-	// sConfigOC.Pulse = volume;
-
-	// if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-	// {
-	// 	Error_Handler();
-	// }
+void	pilick(uint8_t count, uint8_t volume)
+{
+	for(size_t i = 0; i < count; ++i)
+	{
+	  SetSound(500, volume);
+	  HAL_Delay(300);
+	  UnSetSound();
+	  HAL_Delay(100);
+	}
 }
