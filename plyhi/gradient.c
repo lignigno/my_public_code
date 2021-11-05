@@ -6,14 +6,22 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 07:59:12 by lignigno          #+#    #+#             */
-/*   Updated: 2021/06/05 21:44:34 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/11/05 22:51:47 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-#define COLOR_1 0x3498db
-#define COLOR_2 0xe67e22
+#define	NewColor(r, g, b) (((0xFF & (r)) << 16) | ((0xFF & (g)) << 8) | (0xFF & (b)))
+#define	GetR(color) (((color) & 0xFF0000) >> 16)
+#define	GetG(color) (((color) & 0x00FF00) >> 8)
+#define	GetB(color) ((color) & 0x0000FF)
+#define	SetR(color, r) ((color) | ((0xFF & (r)) << 16))
+#define	SetG(color, g) ((color) | ((0xFF & (g)) << 8))
+#define	SetB(color, b) ((color) | (0xFF & (b)))
+
+#define COL_START 0x1515bf
+#define COL_END 0xeb0052
 
 unsigned int		get_a_color_gap(int start, int end, unsigned char slider)
 {
@@ -22,12 +30,12 @@ unsigned int		get_a_color_gap(int start, int end, unsigned char slider)
 	int				green;
 	int				blue;
 
-	red = ((end & 0xff0000) >> 16) - ((start & 0xff0000) >> 16);
-	green = ((end & 0xff00) >> 8) - ((start & 0xff00) >> 8);
-	blue = (end & 0xff) - (start & 0xff);
-	result = start + (((int)((double)red / 256 * slider) & 0xff) << 16 |
-					((int)((double)green / 256 * slider) & 0xff) << 8 |
-					((int)((double)blue / 256 * slider) & 0xff));
+	red		= GetR(end) - GetR(start);
+	green	= GetG(end) - GetG(start);
+	blue	= GetB(end) - GetB(start);
+	result = start + NewColor((int)((double)red / 256 * slider),
+								(int)((double)green / 256 * slider),
+								(int)((double)blue / 256 * slider));
 	return (result);
 }
 
@@ -37,10 +45,13 @@ int					main(void)
 
 	for (int i = 0; i < 256; i++)
 	{
-		color = get_a_color_gap(COLOR_1, COLOR_2, i);
-		printf("slider : [%3i] color \e[48;2;%i;%i;%im              \e[0m\n", i, (color & 0xff0000) >> 16,
-																				 (color & 0xff00) >> 8,
-																				  color & 0xff);
+		color = get_a_color_gap(COL_START, COL_END, i);
+
+		printf("slider : [%3i] \e[48;2;", i);
+		printf("%i;", (color & 0xff0000) >> 16);
+		printf("%i;", (color & 0xff00) >> 8);
+		printf("%im", color & 0xff);
+		printf("%*s\e[m\n", 21, "");
 	}
 	return (0);
 }

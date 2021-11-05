@@ -6,12 +6,13 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 07:53:19 by lignigno          #+#    #+#             */
-/*   Updated: 2021/11/04 01:12:40 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/11/04 23:07:44 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "buzzer.h"
 #include "user_func.h"
+#include <math.h>
 
 // _____________________________________________________________________________
 
@@ -154,18 +155,27 @@ void	RemoveFrequency(hz_t *sound, u64_t position)
 
 static void	preparing(const hz_t *sound)
 {
+	double	notes[] = {C, C_, D, D_, E, F, F_, G, G_, A, A_, B};
 	double	sfa = SIZE_FREQUENCY_ARR;
 	double	curHz;
-	double	notes[] = {C, C_, D, D_, E, F, F_, G, G_, A, A_, B};
+	double	step;
+	double	resulting_amplitude;
+	int		last_res;
 
-	for (size_t i = sizeof(duration_t); sound[i] != END_SOUND; i++)
+	for (size_t i = 0; i < sfa; ++i)
 	{
-		curHz = (sound[i] % 12) * (1 << (sound[i] / 12));
-		for (double i = 0; i < sfa; ++i)
+		resulting_amplitude = 0;
+		for (size_t hz = sizeof(duration_t); sound[hz] < RESERVED; ++hz)
 		{
-			double engle += 360 / (MC_Hz / curHz) * i;
-			FrequencyArr[i] = sin
+			curHz = (notes[sound[hz] % 12]) * (1 << (sound[hz] / 12));	// берём составляющую частоту
+			step = 360 / (DATA_OUTPUT_Hz / curHz);						// вычисляем шаг
+			resulting_amplitude += sin(step * i * M_PI / 180);			// накладываем волы
 		}
+		last_res = (resulting_amplitude) * AMPLITUDE + TIMx_ARR / 2;
+		last_res = last_res < TIMx_ARR ? last_res : TIMx_ARR;
+		last_res = last_res > 0 ? last_res : 0;
+		FrequencyArr[i] = last_res;
+		printf("{%*s} %4zu%*s| %f\n", FrequencyArr[i], "", i, TIMx_ARR - FrequencyArr[i], "", resulting_amplitude);
 	}
 	
 }

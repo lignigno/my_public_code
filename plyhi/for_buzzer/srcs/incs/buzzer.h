@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 07:47:41 by lignigno          #+#    #+#             */
-/*   Updated: 2021/11/04 01:00:04 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/11/04 21:57:04 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@
 #define B	30.86771484375
 
 #define MC_Hz		32000000
-#define AMPLITUDE	79; //TIMx->ARR
-#define SIZE_FREQUENCY_ARR ((size_t)(MC_Hz / (B * (1 << 9))))
+#define DATA_OUTPUT_Hz 400000
+#define TIMx_ARR	500
+#define AMPLITUDE	(TIMx_ARR / 4)
+#define SIZE_FREQUENCY_ARR ((size_t)(DATA_OUTPUT_Hz / (C * (1 << 4))))
 
 typedef u_int8_t	u8_t;	// unsigned 8-bit type
 typedef u_int16_t	u16_t;	// unsigned 16-bit type
@@ -49,7 +51,7 @@ typedef u16_t	duration_t;
 #define NOT_NOTE (hz_t)-2
 #define RESERVED NOT_NOTE
 
-u8_t	FrequencyArr[SIZE_FREQUENCY_ARR];
+u16_t	FrequencyArr[SIZE_FREQUENCY_ARR];
 
 void	InitSound(hz_t *sound, u64_t arr_size);
 void	SetDuration(hz_t *sound, duration_t duration);
