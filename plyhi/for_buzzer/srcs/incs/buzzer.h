@@ -5,20 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 07:47:41 by lignigno          #+#    #+#             */
-/*   Updated: 2021/11/04 21:57:04 by lignigno         ###   ########.fr       */
+/*   Created: 2021/11/04 23:05:26 by lignigno          #+#    #+#             */
+/*   Updated: 2021/11/06 07:53:37 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUZZER_H
-#define BUZZER_H
+#ifndef INC_BUZZER_H_
+#define INC_BUZZER_H_
 
 // _____________________________________________________________________INCLUDES
 
-#include <stdio.h>
+#include "main.h"
+#include <math.h>
 
 // ______________________________________________________________________DEFINES
 
+
+// BASE OCTAVE
+
+/*
+ * any other octave can be obtained by the formula
+ * note * 2 in degree (octave number)
+ * octave number [0 ; 9]
+ * 
+ * example :
+ *     G_ * (1 << 0)
+ *     F * (1 << 3)
+*/
 #define C	16.3516015625
 #define C_	17.32390625
 #define D	18.35404296875
@@ -32,31 +45,43 @@
 #define	A_	29.135234375
 #define B	30.86771484375
 
-#define MC_Hz		32000000
-#define DATA_OUTPUT_Hz 400000
-#define TIMx_ARR	500
-#define AMPLITUDE	(TIMx_ARR / 4)
-#define SIZE_FREQUENCY_ARR ((size_t)(DATA_OUTPUT_Hz / (C * (1 << 4))))
+#define MC_Hz			32000000
+#define PERIOD_SIG		50
+#define MAX_FREQUENCY	16000
+#define TIMx_ARR_VAL	(MC_Hz / MAX_FREQUENCY / PERIOD_SIG - 1)
 
-typedef u_int8_t	u8_t;	// unsigned 8-bit type
-typedef u_int16_t	u16_t;	// unsigned 16-bit type
-typedef u_int32_t	u32_t;	// unsigned 32-bit type
-typedef u_int64_t	u64_t;	// unsigned 64-bit type
+#define	TIMx_ARR		TIM1->ARR
+#define TIMx_PSC		TIM1->PSC
 
-typedef u8_t	hz_t;
-typedef u16_t	duration_t;
+typedef uint8_t		u8_t;	// unsigned 8-bit type
+typedef uint16_t	u16_t;	// unsigned 16-bit type
+typedef uint32_t	u32_t;	// unsigned 32-bit type
+typedef uint64_t	u64_t;	// unsigned 64-bit type
 
-#define INIT_SOUND_SIZE(size) ((size) + sizeof(duration_t) + 1)
-#define END_SOUND (hz_t)-1
-#define NOT_NOTE (hz_t)-2
-#define RESERVED NOT_NOTE
+// no more TIMx_ARR_VAL
+typedef u8_t		signal_t;
+typedef u8_t		vol_t;
 
-u16_t	FrequencyArr[SIZE_FREQUENCY_ARR];
+enum sound_mode_e
+{
+	MODE_SIN,
+	MODE_SQR,
+	MODE_PWM,
+	NOT_VALID,
+};
 
-void	InitSound(hz_t *sound, u64_t arr_size);
-void	SetDuration(hz_t *sound, duration_t duration);
-void	AddFrequency(hz_t *sound, double hz);
-void	RemoveFrequency(hz_t *sound, u64_t position);
-void	PlaySound(const hz_t *sound);
+signal_t	SinSig[PERIOD_SIG];
+signal_t	SqrSig[PERIOD_SIG];
+signal_t	PwmSig[1];
 
-#endif
+void	SetCIRCModeDMA(void);
+void	PWM_Start(u32_t *pData, u16_t Length);
+void	PWM_Stop(void);
+void	Duration(u32_t duration);
+
+void	InitSound(void);
+void	ChangeVolume(u8_t mode, vol_t volume);
+void	PlaySound(u16_t hz, u32_t duration, u8_t mode);
+
+
+#endif /* INC_BUZZER_H_ */
