@@ -6,7 +6,7 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 07:53:19 by lignigno          #+#    #+#             */
-/*   Updated: 2021/11/06 07:54:22 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/11/07 16:49:52 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void	InitSound(void)
 {
-	ChangeVolume(MODE_SIN, 0);
-	ChangeVolume(MODE_SQR, 0);
-	ChangeVolume(MODE_PWM, 0);
+	ChangeVolume(MODE_SIN, INIT_VOL_SIN);
+	ChangeVolume(MODE_SQR, INIT_VOL_SQR);
+	ChangeVolume(MODE_PWM, INIT_VOL_PWM);
 }
 
 //                                                                             |
@@ -61,7 +61,7 @@ void	ChangeVolume(u8_t mode, vol_t volume)
 // ----------------------------------------------------------------------------|
 //                                                                             |
 
-void	PlaySound(u16_t hz, u32_t duration_ms, u8_t mode)
+void	PlaySoundRawFrq(u16_t frq, dur_t duration_ms, u8_t mode)
 {
 	if (mode >= NOT_VALID)
 		return ;
@@ -71,11 +71,41 @@ void	PlaySound(u16_t hz, u32_t duration_ms, u8_t mode)
 	SetCIRCModeDMA();
 	TIMx_ARR = TIMx_ARR_VAL;
 	if (mode == MODE_PWM)
-		TIMx_PSC = MC_Hz / ((TIMx_ARR + 1) * hz);
+		TIMx_PSC = (double)TIM_FRQ / ((TIMx_ARR + 1) * frq);
 	else
-		TIMx_PSC = MC_Hz / (PERIOD_SIG * (TIMx_ARR + 1) * hz);
+		TIMx_PSC = (double)TIM_FRQ / (PERIOD_SIG * (TIMx_ARR + 1) * frq);
 	if (mode == MODE_PWM)
-		; // pulse = PwmSig[0];
+		TIMx_CCR = PwmSig[0];
+
+	if (mode == MODE_PWM)
+		PWM_Start((u32_t *)sigs[mode], 1);
+	else
+		PWM_Start((u32_t *)sigs[mode], PERIOD_SIG);
+	Duration(duration_ms);
+	PWM_Stop();
+}
+
+//                                                                             |
+// ----------------------------------------------------------------------------|
+//                                                                             |
+
+void	PlaySound(u8_t frq, dur_t duration_ms, u8_t mode)
+{
+	if (mode >= NOT_VALID)
+		return ;
+
+	signal_t	*sigs[] = {SinSig, SqrSig, PwmSig};
+	double		notes[] = {C, C_, D, D_, E, F ,F_ ,G , G_, A, A_, B};
+	u16_t		hz = notes[frq & 0xF] * (1 << ((frq & 0xF0) >> 4));
+
+	SetCIRCModeDMA();
+	TIMx_ARR = TIMx_ARR_VAL;
+	if (mode == MODE_PWM)
+		TIMx_PSC = (double)TIM_FRQ / ((TIMx_ARR + 1) * hz);
+	else
+		TIMx_PSC = (double)TIM_FRQ / (PERIOD_SIG * (TIMx_ARR + 1) * hz);
+	if (mode == MODE_PWM)
+		TIMx_CCR = PwmSig[0];
 
 	if (mode == MODE_PWM)
 		PWM_Start((u32_t *)sigs[mode], 1);
