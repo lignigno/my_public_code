@@ -6,7 +6,7 @@
 #    By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/03 16:11:24 by lignigno          #+#    #+#              #
-#    Updated: 2021/10/29 07:47:08 by lignigno         ###   ########.fr        #
+#    Updated: 2021/11/07 16:58:44 by lignigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ DEP						:=	$(wildcard $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.d))))
 
 # _______________________________________________________________________TARGETS
 
-all						:	$(OBJ_DIR) $(NAME)
+all						:	#$(OBJ_DIR) $(NAME)
+							@echo "$(COL_0)m" "\nMakefile is not needed at the moment!\n" "$(UNSET)"
 
 $(NAME)					:	$(OBJ)
 							@gcc $(OBJ) -o $@
