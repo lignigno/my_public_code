@@ -55,9 +55,9 @@
 #define MAX_FREQUENCY	// 16000
 #define TIMx_ARR_VAL	((double)TIM_FRQ / MAX_FREQUENCY / PERIOD_SIG - 1)
 
-#define	TIMx_ARR		TIM1->ARR
-#define TIMx_PSC		TIM1->PSC
-#define TIMx_CCR		TIM1->CCR1
+#define	TIMx_ARR		// TIM1->ARR
+#define TIMx_PSC		// TIM1->PSC
+#define TIMx_CCR		// TIM1->CCR1
 
 typedef // uint8_t		u8_t;	// unsigned 8-bit type
 typedef // uint16_t	u16_t;	// unsigned 16-bit type
