@@ -35,7 +35,7 @@ void	ChangeVolume(u8_t mode, vol_t volume)
 		case MODE_SIN:
 			step = 360 / PERIOD_SIG;
 			for (size_t i = 0; i < PERIOD_SIG; ++i)
-				SinSig[i] = (sin(i * step * M_PI / 180) + 1) * volume;
+				SinSig[i] = (sin(i * step * M_PI / 180) + 1) / 2 * volume;
 			break;
 
 		case MODE_SQR:
