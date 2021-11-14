@@ -6,22 +6,23 @@
 /*   By: lignigno <lignign@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 07:59:12 by lignigno          #+#    #+#             */
-/*   Updated: 2021/11/05 23:00:34 by lignigno         ###   ########.fr       */
+/*   Updated: 2021/11/14 06:55:39 by lignigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// START______________________________________________________________CODE BLOCK
 
 #include <stdio.h>
 
 #define	NewColor(r, g, b) (((0xFF & (r)) << 16) | ((0xFF & (g)) << 8) | (0xFF & (b)))
+
 #define	GetR(color) (((color) & 0xFF0000) >> 16)
 #define	GetG(color) (((color) & 0x00FF00) >> 8)
 #define	GetB(color) ((color) & 0x0000FF)
+
 #define	SetR(color, r) ((color) | ((0xFF & (r)) << 16))
 #define	SetG(color, g) ((color) | ((0xFF & (g)) << 8))
 #define	SetB(color, b) ((color) | (0xFF & (b)))
-
-#define COL_START 0x1515bf
-#define COL_END 0xeb0052
 
 unsigned int		get_a_color_gap(int start, int end, unsigned char slider)
 {
@@ -33,13 +34,20 @@ unsigned int		get_a_color_gap(int start, int end, unsigned char slider)
 	red		= GetR(end) - GetR(start);
 	green	= GetG(end) - GetG(start);
 	blue	= GetB(end) - GetB(start);
-	result = start + NewColor((int)((double)red / 256 * slider),
+	result	= start + NewColor((int)((double)red / 256 * slider),
 								(int)((double)green / 256 * slider),
 								(int)((double)blue / 256 * slider));
 	return (result);
 }
 
-int					main(void)
+// END______________________________________________________________CODE BLOCK
+
+#define COL_START 0x1515bf
+#define COL_END 0xeb0052
+
+// ________________________________________________________________MAIN FUNCTION
+
+int	main(void)
 {
 	int				color;
 
