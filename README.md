@@ -1,6 +1,6 @@
 My_progress
 ---
-![lignigno's stats](https://badge42.herokuapp.com/api/stats/lignigno)
+![lignigno's 42 stats](https://badge42.vercel.app/api/v2/cl2mjljpk001109mpz3di56hr/stats?cursusId=21&coalitionId=99)
 
 Весь первоначальный код был написан под определённое ТЗ, но в дальнейшем мог быть доработан.  
 Код написаный на C был приведён к нормам написания кода по правилам __norminette__,  
