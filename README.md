@@ -16,8 +16,13 @@ Some mini ray tracing (so little that this raycasting works, but it takes a long
 
 ---
 
-### 🤔 **Philosophers**
+### 🧔🍴🧔🍴🧔🍴 **Philosophers**
 Exploration of **multithreading** and **multiprocessing** concepts. 🧵⚙️
+
+---
+
+### 💻 **minishell**
+This project is about creating a simple shell.
 
 ---
 
@@ -27,3 +32,4 @@ Code that makes me high. 🚀✨
 ---
 
 Enjoy exploring! 🚀
+
