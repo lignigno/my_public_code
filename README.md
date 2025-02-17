@@ -33,3 +33,6 @@ Code that makes me high. 🚀✨
 
 Enjoy exploring! 🚀
 
+
+Thank you, ChatGPT, for the README.
+
