@@ -27,7 +27,8 @@ make re
 <br>
 
 ### *After run*
-*Will be soon* <color style="color:Gray;"> (maybe, but you better not get your hopes up) </color>
+*Will be soon*  
+(maybe, but you better not get your hopes up)
 
 <br>
 <br>
