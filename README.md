@@ -6,9 +6,6 @@ Some unsorted code, but maybe cool. 🙂
 
 ## 📚 **Summarily**
 
-### 🛠️ **Manual for Peers**
-There should be manuals for other projects here for my associates, but I'm lazy and only wrote one (and not all the way through). 😅
-
 ---
 
 ### 🌟 **miniRT**
@@ -33,6 +30,4 @@ Code that makes me high. 🚀✨
 
 Enjoy exploring! 🚀
 
-
 Thank you, ChatGPT, for the README.
-
