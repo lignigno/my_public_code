@@ -30,11 +30,10 @@ Enjoy exploring!
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
 
-P.S.  
-Thank you, ChatGPT, for the README.
+<p align="right">
+  P.S.<br>
+  Thank you, ChatGPT, for the README.
+</p>
 
 [HeaderImg]: ~for_readme/header.jpg
