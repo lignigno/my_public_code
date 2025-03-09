@@ -1,8 +1,8 @@
 # Code Collection 🙃
 
-![Beautiful header image][HeaderImg]
+![Beautiful header image][~for_readme/header.jpg]
 
-[HeaderImg]: README.md.src/header.jpg
+[HeaderImg]: asdf
 
 📚 **Summarily**
 
