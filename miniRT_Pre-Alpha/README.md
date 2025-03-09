@@ -28,6 +28,7 @@ make re
 
 ### *After run*
 | ***Will be soon*** |
+| ------------------ |
 
 > [!NOTE]
 > (maybe, but you better not get your hopes up)
