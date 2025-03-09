@@ -2,9 +2,8 @@
 
 ![Beautiful header image][HeaderImg]
 
-[HeaderImg]: ~for_readme/header.jpg
-
-📚 **Summarily**
+<br>
+<br>
 
 ### **MiniRT**
 Some mini ray tracing (so little that this raycasting works, but it takes a long time).
@@ -37,3 +36,5 @@ Enjoy exploring!
 
 P.S.  
 Thank you, ChatGPT, for the README.
+
+[HeaderImg]: ~for_readme/header.jpg

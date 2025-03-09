@@ -1,6 +1,16 @@
 # **MiniRT**
 
-Make commands
+![spheres][Spheres]
+
+<br>
+<br>
+
+## **How it use**
+
+<br>
+
+
+### *Make commands*
 ``` bash
 make
 ```
@@ -14,8 +24,15 @@ make fclean
 make re
 ```
 
-### **Examples**
-![spheres][Spheres]
+<br>
+
+### *After run*
+*Will be soon* <color style="color:Gray;"> (maybe, but you better not get your hopes up) </color>
+
+<br>
+<br>
+
+## **Other examples**
 ![wolf][Wolf]
 
 [Wolf]: ~for_readme/wolf.bmp
