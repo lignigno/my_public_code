@@ -1,4 +1,4 @@
-# Code Collection 🙃
+# **Code Collection** 🙃
 
 ![Beautiful header image][HeaderImg]
 
@@ -6,7 +6,7 @@
 
 📚 **Summarily**
 
-### **miniRT**
+### **MiniRT**
 Some mini ray tracing (so little that this raycasting works, but it takes a long time).
 
 ---
@@ -16,7 +16,7 @@ Exploration of **multithreading** and **multiprocessing** concepts.
 
 ---
 
-### **minishell**
+### **Minishell**
 This project is about creating a simple shell.
 
 ---
