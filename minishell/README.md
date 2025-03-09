@@ -1,6 +1,6 @@
 # **MiniRT**
 
-![spheres][Spheres]
+![work example][]
 
 <br>
 <br>
@@ -28,13 +28,3 @@ make re
 ### *After run*
 <div align="center"> Will be soon </div>
 <div align="center">(maybe, but you better not get your hopes up)</div>
-
-
-<br>
-<br>
-
-## **Other examples**
-![wolf][Wolf]
-
-[Wolf]: ~for_readme/wolf.bmp
-[Spheres]: ~for_readme/spheres.jpg
