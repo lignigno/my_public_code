@@ -1,6 +1,8 @@
 # Code Collection 🙃
 
-![Beautiful header image](https://github.com/lignigno/my_public_code/~for_readme)
+![Beautiful header image][HeaderImg]
+
+[HeaderImg]: README.md.src/header.jpg
 
 📚 **Summarily**
 
