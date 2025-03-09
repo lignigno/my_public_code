@@ -1,6 +1,6 @@
-# **MiniRT**
+# **Minishell**
 
-![work example][]
+![work example][Minishell]
 
 <br>
 <br>
@@ -28,3 +28,5 @@ make re
 ### *After run*
 <div align="center"> Will be soon </div>
 <div align="center">(maybe, but you better not get your hopes up)</div>
+
+[Minishell]: ~for_readme/minishell.png
