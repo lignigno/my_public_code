@@ -16,7 +16,7 @@
 
 ``` bash
 echo "git clone <url> /tmp/lis" && \
-echo "/tmp/lis/install"
+echo "/tmp/lis/code/install.sh"
 ```
 
 [Header]: ~for_readme/header.png
