@@ -16,7 +16,6 @@
 
 ``` bash
 echo "git clone <url> /tmp/lis" && \
-echo "chmod +x /tmp/lis/install" && \
 echo "/tmp/lis/install"
 ```
 
