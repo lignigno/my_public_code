@@ -9,7 +9,13 @@
 
 <br>
 
-<div align="center"> Will be soon </div>
-<div align="center">(maybe, but you better not get your hopes up)</div>
+1) Copy the command.  
+2) Paste it into the terminal.
+
+<h2 align="right">Button for copy \/</h2>
+
+``` bash
+make
+```
 
 [Header]: ~for_readme/header.png
