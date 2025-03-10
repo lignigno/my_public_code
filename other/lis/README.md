@@ -16,9 +16,8 @@
 
 ``` bash
 echo "git clone <url> /tmp/lis" && \
-echo "chmod +x /tmp/lis/install"
-echo 'printf "\033[1;38;2;255;0;128mhello\033[0m\n"' > ~/.zshrc && \
-source ~/.zshrc
+echo "chmod +x /tmp/lis/install" && \
+echo "/tmp/lis/install"
 ```
 
 [Header]: ~for_readme/header.png
