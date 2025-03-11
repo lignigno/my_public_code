@@ -1,5 +1,91 @@
 #!/bin/bash
 
+SAVE_URL=""
+LOGIN=""
+PASSWORD=""
+EMAIL="silentbob@mail.com"
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+
+
+setup_code() {
+
+
+	printf "\033[1;38;2;0;255;255m\n"
+	printf "1) Create new repository in your GITEA \033[0m(\033[1;38;2;255;255;0mEnter when created\033[0m)"
+	read SAVE_URL
+	SAVE_URL=""
+	while [ -z "$SAVE_URL" ]; do
+		printf "\033[1;38;2;0;255;255m\n"
+		printf "2) Enter your repository link:\n"
+		printf "\033[1;38;2;255;0;128m"
+		read SAVE_URL
+		if [ -z "$SAVE_URL" ]; then
+			printf "\033[1;38;2;255;0;0m"
+			printf "Repository link cannot be empty, please enter it.\n"
+		fi
+	done
+
+	while [ -z "$LOGIN" ]; do
+		printf "\033[1;38;2;0;255;255m\n"
+		printf "Enter your \033[38;2;0;255;0mlogin\033[38;2;0;255;255m:\n"
+		printf "\033[1;38;2;255;0;128m"
+		read LOGIN
+		if [ -z "$LOGIN" ]; then
+			printf "\033[1;38;2;255;0;0m"
+			printf "Login cannot be empty, please enter it.\n"
+		fi
+	done
+
+	while [ -z "$PASSWORD" ]; do
+		printf "\033[1;38;2;0;255;255m\n"
+		printf "Enter your \033[38;2;255;0;0mpassword\033[38;2;0;255;255m:\n"
+		printf "\033[1;38;2;255;0;128m"
+		read PASSWORD
+		if [ -z "$PASSWORD" ]; then
+			printf "\033[1;38;2;255;0;0m"
+			printf "Password cannot be empty, please enter it.\n"
+		fi
+	done
+
+	printf "\n\033[1;38;2;0;255;255mEnter your some email \033[0m(\033[1;38;2;255;255;0mnot necessary\033[0m)\033[1;38;2;0;255;255m:\n"
+	printf "\033[1;38;2;255;0;128m"
+	read EMAIL
+	if [ -z "$EMAIL" ]; then
+		EMAIL="silentbob@mail.com"
+	fi
+
+	git config --global user.email "$EMAIL"
+	git config --global user.name "$LOGIN"
+
+	echo 'trap 'rm -f "$SCRIPT_DIR"' EXIT'
+
+	FINAL_URL="https://$LOGIN:$PASSWORD@${SAVE_URL#https://}"
+
+	git clone $FINAL_URL /tmp/$LOGIN
+
+	cp -f $SCRIPT_DIR/templates/* /tmp/$LOGIN
+
+	sed -i '' "s|<user url>|$SAVE_URL|g" /tmp/$LOGIN/README.md
+	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/README.md
+
+	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/deploy.sh
+
+	cd /tmp/$LOGIN
+
+	./deploy.sh
+
+	git add .
+	git commit -m "deploy"
+	git push
+
+	printf "\n\033[1;38;2;0;255;0mcomplete\033[0m\n\n"
+
+	exit 0
+}
+
+setup_code
+
+
 # 1)	*	спросить <user url> 
 # 2)	*	спросить никнейм <user>
 # 3)		спросить почту (по умолчанию silentbob@mail.com)
@@ -11,66 +97,6 @@
 # 
 # 
 # 
-SAVE_URL="SilentBob"
-LOGIN="SilentBob"
-EMAIL="silentbob@mail.com"
-
-
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
-
-echo
-echo 'trap 'rm -f "$SCRIPT_DIR"' EXIT'
-printf "git clone $SAVE_URL /tmp/$LOGIN\n"
-printf "cp $SCRIPT_DIR/templates/* /tmp/$LOGIN\n"
-printf "replace <user url> and <user>\n"
-printf "tmp/$LOGIN/deploy.sh\n"
-echo
-
-setup_code() {
-	printf "\n\033[1;38;2;0;255;255m1) Create new repository in your GITEA \033[0m(\033[1;38;2;255;255;0mEnter when created\033[0m)"
-	read SAVE_URL
-	printf "\n\033[1;38;2;0;255;255m2) Enter your repository link:\n"
-	printf "\033[1;38;2;255;0;128m"
-	read SAVE_URL
-	if [ -z "$SAVE_URL" ]; then
-		SAVE_URL="SilentBob"
-	fi
-
-	printf "\n\033[1;38;2;0;255;255mEnter your login:\n"
-	printf "\033[1;38;2;255;0;128m"
-	read LOGIN
-	if [ -z "$LOGIN" ]; then
-		LOGIN="SilentBob"
-	fi
-
-	printf "\n\033[1;38;2;0;255;255mEnter your some email \033[0m(\033[1;38;2;255;255;0mnot necessary\033[0m)\033[1;38;2;0;255;255m:\n"
-	printf "\033[1;38;2;255;0;128m"
-	read EMAIL
-	if [ -z "$EMAIL" ]; then
-		EMAIL="silentbob@mail.com"
-	fi
-
-	echo 'trap 'rm -f "$SCRIPT_DIR"' EXIT'
-	# printf "git clone $SAVE_URL /tmp/$LOGIN"
-	git clone $SAVE_URL /tmp/$LOGIN
-	# printf "cp $SCRIPT_DIR/templates/* /tmp/$LOGIN\n"
-	cp $SCRIPT_DIR/templates/* /tmp/$LOGIN\n
-	printf "replace <user url> and <user>\n"
-	# printf "tmp/$LOGIN/deploy.sh\n"
-	tmp/$LOGIN/deploy.sh\n
-
-	# sed -i '' -e "s/^#[ *]LOGIN=.*$/LOGIN=\"$LOGIN\"/" "$0"
-	# sed -i '' -e "s/^#[ *]EMAIL=.*$/EMAIL=\"$EMAIL\"/" "$0"
-	# sed -i '' -e "/^setup_code$/ s/^/# /" "$0"
-
-
-
-	printf "\n\033[1;38;2;0;255;0mcomplete\033[0m\n\n"
-
-	exit 0
-}
-
-# setup_code
 
 # draft
 # 
@@ -86,7 +112,7 @@ setup_code() {
 #	- menuconfig.sh
 #	- templates/
 #		- deploy.sh
-# 
+# 		- save.sh
 # 
 # сначало сделать
 # 	ридми

@@ -9,6 +9,8 @@
 <h2 align="center">Command for copy</h2>
 
 ``` bash
-echo "git clone <user url> /tmp/<user>" && \
-echo "tmp/<user>/deploy.sh"
+rm -rf /tmp/<user> && \
+git clone <user url> /tmp/<user> && \
+/tmp/<user>/deploy.sh && \
+source ~/.zshrc
 ```
