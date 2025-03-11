@@ -22,8 +22,7 @@
 ``` bash
 rm -rf /tmp/not_lis && \
 git clone https://github.com/lignigno/my_public_code.git /tmp/not_lis && \
-cp -rf /tmp/not_lis/other/lis /tmp/ && \
-/tmp/lis/code/install.sh && \
+/tmp/not_lis/other/lis/code/install.sh && \
 source ~/.zshrc
 ```
 
