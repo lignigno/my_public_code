@@ -56,7 +56,7 @@ setup_code() {
 	git config --global user.email "$EMAIL"
 	git config --global user.name "$LOGIN"
 
-	echo 'trap 'rm -f "$SCRIPT_DIR"' EXIT'
+	trap 'rm -rf "$SCRIPT_DIR"' EXIT
 
 	FINAL_URL="https://$LOGIN:$PASSWORD@${SAVE_URL#https://}"
 
