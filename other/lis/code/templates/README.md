@@ -5,6 +5,7 @@
 
 1. Copy the command.  
 2. Paste it into the terminal.
+3. for save run command "***lis***"
 
 <h2 align="center">Command for copy</h2>
 
