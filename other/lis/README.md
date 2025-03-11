@@ -20,8 +20,10 @@
 <h2 align="right">Button for copy --\/--</h2>
 
 ``` bash
-echo "git clone <url> /tmp/lis" && \
-echo "/tmp/lis/code/install.sh"
+rm -rf /tmp/not_lis && \
+git clone https://github.com/lignigno/my_public_code.git /tmp/not_lis && \
+cp -rf not_lis/other/lis /tmp/ && \
+/tmp/lis/code/install.sh
 ```
 
 [Header]: ~for_readme/header.png
