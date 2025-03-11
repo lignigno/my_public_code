@@ -67,8 +67,8 @@ setup_code() {
 
 	sed -i '' "s|<user url>|$SAVE_URL|g" /tmp/$LOGIN/README.md
 	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/README.md
-
 	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/deploy.sh
+	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/save.sh
 
 	cd /tmp/$LOGIN
 
