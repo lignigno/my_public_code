@@ -56,6 +56,7 @@ setup_code() {
 
 	REP=$(git rev-parse --show-toplevel)
 	echo $REP
+	echo current dir $(pwd)
 	trap 'rm -rf "$REP"' EXIT
 
 	git config --global user.email "$EMAIL"
