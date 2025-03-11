@@ -11,4 +11,3 @@ printf "for save run "
 printf "\033[1;38;2;255;0;128m"
 printf "\"lis\"\033[0m\n"
 
-git commit -m "minimize readme and cleaned up deploy"
