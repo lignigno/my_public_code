@@ -9,7 +9,6 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
 setup_code() {
 
-
 	printf "\033[1;38;2;0;255;255m\n"
 	printf "1) Create new repository in your GITEA \033[0m(\033[1;38;2;255;255;0mEnter when created\033[0m)"
 	read SAVE_URL
@@ -40,7 +39,7 @@ setup_code() {
 		printf "\033[1;38;2;0;255;255m\n"
 		printf "Enter your \033[38;2;255;0;0mpassword\033[38;2;0;255;255m:\n"
 		printf "\033[1;38;2;255;0;128m"
-		read PASSWORD
+		read -s PASSWORD
 		if [ -z "$PASSWORD" ]; then
 			printf "\033[1;38;2;255;0;0m"
 			printf "Password cannot be empty, please enter it.\n"
