@@ -73,10 +73,7 @@ setup_code() {
 	cd /tmp/$LOGIN
 
 	./deploy.sh
-
-	git add .
-	git commit -m "deploy"
-	git push
+	./save.sh
 
 	printf "\n\033[1;38;2;0;255;0mcomplete\033[0m\n\n"
 
