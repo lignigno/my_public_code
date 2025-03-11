@@ -61,6 +61,7 @@ setup_code() {
 
 	FINAL_URL="https://$LOGIN:$PASSWORD@${SAVE_URL#https://}"
 
+	rm -rf /tmp/$LOGIN
 	git clone $FINAL_URL /tmp/$LOGIN
 
 	cp -f $SCRIPT_DIR/templates/* /tmp/$LOGIN
