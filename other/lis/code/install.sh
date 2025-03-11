@@ -6,13 +6,13 @@ PASSWORD=""
 EMAIL="silentbob@mail.com"
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-
 setup_code() {
 
 	printf "\033[1;38;2;0;255;255m\n"
 	printf "1) Create new repository in your GITEA \033[0m(\033[1;38;2;255;255;0mEnter when created\033[0m)"
 	read SAVE_URL
 	SAVE_URL=""
+
 	while [ -z "$SAVE_URL" ]; do
 		printf "\033[1;38;2;0;255;255m\n"
 		printf "2) Enter your repository link:\n"
@@ -67,8 +67,9 @@ setup_code() {
 
 	sed -i '' "s|<user url>|$SAVE_URL|g" /tmp/$LOGIN/README.md
 	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/README.md
-	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/deploy.sh
+	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/lis.sh
 	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/save.sh
+	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/deploy.sh
 
 	cd /tmp/$LOGIN
 

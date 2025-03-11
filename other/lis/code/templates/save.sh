@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-# todo save
-
 cd /tmp/<user>
 
-git add .
-git commit -m "save"
-git push
+git add . > /tmp/null
+git commit -m "save" > /tmp/null
+git push > /tmp/null
+
+rm -rf /tmp/null
 
 printf "\033[1;38;2;255;0;128m"
 printf "saved"
