@@ -76,8 +76,12 @@ setup_code() {
 	./deploy.sh
 	./save.sh
 
-	printf "\n\033[1;38;2;0;255;0mcomplete\033[0m\n\n"
+	if [ $? -ne 0]; then
+		printf "\n\033[1;38;2;255;0;0mERROR\033[0m\n\n"
+		exit 1
+	fi
 
+	printf "\n\033[1;38;2;0;255;0mcomplete\033[0m\n\n"
 	exit 0
 }
 

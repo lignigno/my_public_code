@@ -3,8 +3,21 @@
 cd /tmp/<user>
 
 git add . > /tmp/null
+
+if [ $? -ne 0]; then
+	exit 1
+fi
+
 git commit -m "save" > /tmp/null
+
+if [ $? -ne 0]; then
+	exit 1
+fi
 git push > /tmp/null
+
+if [ $? -ne 0]; then
+	exit 1
+fi
 
 rm -rf /tmp/null
 
