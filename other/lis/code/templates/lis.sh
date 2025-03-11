@@ -24,7 +24,7 @@ if [ $# -gt 0 ]; then
 	fi
 fi
 
-echo "result command : $LIS_SCRIPTS_DIR/$COMMAND.sh"
+$LIS_SCRIPTS_DIR/$COMMAND.sh
 
 is_command() {
 	for cmd in "${EXIST_COMMANDS[@]}"; do
