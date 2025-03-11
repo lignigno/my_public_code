@@ -54,7 +54,9 @@ setup_code() {
 	fi
 	printf "\033[0m"
 
-	trap 'rm -rf "$(git rev-parse --show-toplevel)"' EXIT
+	REP=$(git rev-parse --show-toplevel)
+	echo $REP
+	trap 'rm -rf "$REP"' EXIT
 
 	git config --global user.email "$EMAIL"
 	git config --global user.name "$LOGIN"

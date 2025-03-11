@@ -5,17 +5,21 @@ cd /tmp/<user>
 git add . > /tmp/null
 
 if [ $? -ne 0 ]; then
+	rm -rf /tmp/null
 	exit 1
 fi
 
 git commit -m "save" > /tmp/null
 
 if [ $? -ne 0 ]; then
+	rm -rf /tmp/null
 	exit 1
 fi
+
 git push > /tmp/null
 
 if [ $? -ne 0 ]; then
+	rm -rf /tmp/null
 	exit 1
 fi
 
