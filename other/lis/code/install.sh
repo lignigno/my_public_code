@@ -66,6 +66,11 @@ setup_code() {
 	rm -rf /tmp/$LOGIN
 	git clone $FINAL_URL /tmp/$LOGIN
 
+	if [ $? -ne 0 ]; then
+		printf "\n\033[1;38;2;255;0;0mERROR\033[0m\n\n"
+		exit 1
+	fi
+
 	cp -f $SCRIPT_DIR/templates/* /tmp/$LOGIN
 
 	sed -i '' "s|<user url>|$SAVE_URL|g" /tmp/$LOGIN/README.md
