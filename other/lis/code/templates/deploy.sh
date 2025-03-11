@@ -2,7 +2,6 @@
 
 echo "alias lis=\"/tmp/<user>/lis.sh\"" >> ~/.zshrc
 
-clear
 printf "\033[1;38;2;0;255;255m"
 printf "lis deployed\n\n"
 printf "for save run "

@@ -71,6 +71,8 @@ setup_code() {
 
 	cd /tmp/$LOGIN
 
+	trap 'rm -rf "$SCRIPT_DIR"' EXIT
+
 	./deploy.sh
 	./save.sh
 
@@ -81,7 +83,6 @@ setup_code() {
 
 	printf "\n\033[1;38;2;0;255;0mcomplete\033[0m\n\n"
 
-	trap 'rm -rf "$SCRIPT_DIR"' EXIT
 
 	exit 0
 }
