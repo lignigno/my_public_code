@@ -52,6 +52,9 @@ setup_code() {
 	if [ -z "$EMAIL" ]; then
 		EMAIL="silentbob@mail.com"
 	fi
+	printf "\033[0m"
+
+	trap 'rm -rf "$(git rev-parse --show-toplevel)"' EXIT
 
 	git config --global user.email "$EMAIL"
 	git config --global user.name "$LOGIN"
@@ -70,8 +73,6 @@ setup_code() {
 	sed -i '' "s|<user>|$LOGIN|g" /tmp/$LOGIN/deploy.sh
 
 	cd /tmp/$LOGIN
-
-	trap 'rm -rf "$SCRIPT_DIR"' EXIT
 
 	./deploy.sh
 	./save.sh
