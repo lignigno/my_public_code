@@ -56,7 +56,6 @@ setup_code() {
 
 	cd $SCRIPT_DIR
 	REP=$(git rev-parse --show-toplevel)
-	echo $REP
 	trap 'rm -rf "$REP"' EXIT
 
 	git config --global user.email "$EMAIL"
